@@ -1,0 +1,52 @@
+{
+	"name": "BlueSpiceUEModuleHTML",
+	"version": "3.0.0-alpha",
+	"license-name": "GPL-3.0",
+	"url": "https://help.bluespice.com/index.php/UEModuleHTML",
+	"author": [
+		"Robert Vogel"
+	],
+	"descriptionmsg": "bs-uemodulehtml-extension-description",
+	"type": "bluespice",
+	"attributes": {
+		"BlueSpiceFoundation": {
+			"Extensions": {
+				"BlueSpiceUEModuleHTML": {
+					"className": "UEModuleHTML",
+					"extPath": "/BlueSpiceUEModuleHTML",
+					"package": "BlueSpice Pro",
+					"status": "stable",
+					"configDefinitions": {
+						"UEModuleHTMLSuppressNS": "\\BlueSpice\\UEModuleHTML\\ConfigDefinition\\SuppressNS::getInstance"
+					}
+				}
+			}
+		}
+	},
+	"MessagesDirs": {
+		"BlueSpiceUEModuleHTML": [
+			"i18n"
+		]
+	},
+	"AutoloadClasses": {
+		"UEModuleHTML": "UEModuleHTML.class.php",
+		"BsExportModuleHTML": "includes/ExportModuleHTML.class.php",
+		"BsHTMLArchiver": "includes/HTMLArchiver.php"
+	},
+	"AutoloadNamespaces": {
+		"BlueSpice\\UEModuleHTML\\": "src/"
+	},
+	"config_prefix": "bsg",
+	"config": {
+		"UEModuleHTMLSuppressNS": {
+			"value": false,
+			"descriptionmsg": "bs-uemodulehtml-pref-SuppressNS",
+			"public": true
+		},
+		"UEModuleHTMLTemplatePath": {
+			"value": "extensions/BlueSpiceUEModuleHTML/data/HTMLTemplates"
+		}
+	},
+	"load_composer_autoloader": true,
+	"manifest_version": 2
+}

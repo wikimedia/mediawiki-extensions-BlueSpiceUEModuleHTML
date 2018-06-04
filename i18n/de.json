@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Robert Vogel <vogel@hallowelt.biz>"
+		]
+	},
+	"UEModuleHTML": "UniversalExport HTML Modul",
+	"prefs-uemodulehtml": "UniversalExport HTML Modul",
+	"prefs-UEModuleHTML": "UniversalExport HTML Modul",
+	"bs-uemodulehtml-extension-description": "Ermöglicht das Exportieren nach HTML",
+	"bs-uemodulehtml-pref-DefaultTemplate": "Standardvorlage",
+	"bs-uemodulehtml-pref-SuppressNS": "Namensraum im HTML ausblenden",
+	"bs-uemodulehtml-widgetlink-single-text": "HTML Einzelseite (gepackt)",
+	"bs-uemodulehtml-widgetlink-single-title": "Diese Seite im HTML Format zusammen mit ihren Ressourcen in einem ZIP-Archiv ausgeben.",
+	"bs-uemodulehtml-overview-title": "HTML Dokument (gepackt)",
+	"bs-uemodulehtml-overview-description": "Exportiert Wikiseiten (Spezialseiten und Inhaltsseiten) nach HTML."
+}

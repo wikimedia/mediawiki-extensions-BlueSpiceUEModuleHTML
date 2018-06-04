@@ -1,0 +1,12 @@
+{
+	"name": "bluespice/ue-module-html",
+	"type": "mediawiki-extension",
+	"description": "Enables BlueSpice to export to HTML",
+	"license": "GPL-3.0",
+	"extra": {
+		"installer-name": "BlueSpiceUEModuleHTML"
+	},
+	"require": {
+		"composer/installers": "~1.0"
+	}
+}
