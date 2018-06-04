@@ -52,10 +52,6 @@ class UEModuleHTML extends BsExtensionMW {
 	 * @return boolean
 	 */
 	public function onSkinTemplateOutputPageBeforeExec( &$oSkin, &$oTemplate ) {
-		if ( !$oTemplate instanceof BsBaseTemplate ) {
-			return true;
-		}
-
 		$oTemplate->data['bs_export_menu'][] = $this->buildContentAction();
 
 		return true;
