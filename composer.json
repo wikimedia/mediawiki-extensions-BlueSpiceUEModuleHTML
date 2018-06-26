@@ -1,5 +1,5 @@
 {
-	"name": "bluespice/ue-module-html",
+	"name": "bluespice/uemodulehtml",
 	"type": "mediawiki-extension",
 	"description": "Enables BlueSpice to export to HTML",
 	"license": "GPL-3.0-only",
