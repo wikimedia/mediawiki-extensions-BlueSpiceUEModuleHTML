@@ -86,7 +86,7 @@ class BsExportModuleHTML implements BsUniversalExportModule {
 		$aContents = array(
 			'content' => array( $aPage['dom']->documentElement )
 		);
-		wfRunHooks( 'BSUEModuleHTMLBeforeAddingContent', array( &$aTemplate, &$aContents ) );
+		\Hooks::run( 'BSUEModuleHTMLBeforeAddingContent', array( &$aTemplate, &$aContents ) );
 
 		$oContentTags = $oDOM->getElementsByTagName( 'content' );
 		$i = $oContentTags->length - 1;
@@ -107,7 +107,7 @@ class BsExportModuleHTML implements BsUniversalExportModule {
 		$oCaller->aParams['title'] = $oCaller->oRequestedTitle->getText();
 		$oCaller->aParams['resources']      = $aTemplate['resources'];
 
-		wfRunHooks( 'BSUEModuleHTMLBeforeCreateHTML', array( $this, $oDOM, $oCaller ) );
+		\Hooks::run( 'BSUEModuleHTMLBeforeCreateHTML', array( $this, $oDOM, $oCaller ) );
 
 		//Prepare response
 		$aResponse = array(
