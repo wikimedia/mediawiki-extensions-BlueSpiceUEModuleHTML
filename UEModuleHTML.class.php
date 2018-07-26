@@ -146,7 +146,7 @@ class UEModuleHTML extends BsExtensionMW {
 			'TEXT'    => wfMessage( 'bs-uemodulehtml-widgetlink-single-text' )->text(),
 		);
 
-		wfRunHooks( 'BSUEModuleHTMLBeforeCreateWidget', array( $this, $oSpecialPage, &$aLinks, $aCurrentQueryParams ) );
+		\Hooks::run( 'BSUEModuleHTMLBeforeCreateWidget', array( $this, $oSpecialPage, &$aLinks, $aCurrentQueryParams ) );
 
 		$oHTMLView = new ViewBaseElement();
 		$oHTMLView->setAutoWrap( '<ul>###CONTENT###</ul>' );

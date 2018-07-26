@@ -55,7 +55,7 @@ class BsHTMLArchiver extends BsPDFServlet {
 				);
 			}
 		}
-		wfRunHooks( 'BSUEModuleHTMLCreateHTMLBeforeSend', array( $this, &$aOptions, $oHtmlDOM ) );
+		\Hooks::run( 'BSUEModuleHTMLCreateHTMLBeforeSend', array( $this, &$aOptions, $oHtmlDOM ) );
 		//HINT: http://www.php.net/manual/en/class.domdocument.php#96055
 		//But: Formated Output is evil because is will destroy formatting in <pre> Tags!
 		$oZip->addFromString($this->aParams['title'].'/index.html', $oHtmlDOM->saveHTML() );
