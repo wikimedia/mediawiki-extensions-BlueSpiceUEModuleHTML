@@ -111,7 +111,8 @@ class UEModuleHTML extends BsExtensionMW {
 			'href' => $oSpecialPage->getLinkUrl( $aCurrentQueryParams ),
 			'title' => wfMessage( 'bs-uemodulehtml-widgetlink-single-title' )->text(),
 			'text' => wfMessage( 'bs-uemodulehtml-widgetlink-single-text' )->text(),
-			'class' => 'icon-file-zip bs-ue-export-link'
+			'class' => 'bs-ue-export-link',
+			'classes' => 'icon-file-zip bs-ue-export-link'
 		);
 	}
 
