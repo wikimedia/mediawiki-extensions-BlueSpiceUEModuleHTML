@@ -8,9 +8,9 @@ class SuppressNS extends BooleanSetting {
 
 	public function getPaths() {
 		return [
-			static::MAIN_PATH_FEATURE . '/' . static::FEATURE_EXPORT . '/UEModuleHTML',
-			static::MAIN_PATH_EXTENSION . '/UEModuleHTML/' . static::FEATURE_EXPORT,
-			static::MAIN_PATH_PACKAGE . '/' . static::PACKAGE_PRO . '/UEModuleHTML',
+			static::MAIN_PATH_FEATURE . '/' . static::FEATURE_EXPORT . '/BlueSpiceUEModuleHTML',
+			static::MAIN_PATH_EXTENSION . '/BlueSpiceUEModuleHTML/' . static::FEATURE_EXPORT,
+			static::MAIN_PATH_PACKAGE . '/' . static::PACKAGE_PRO . '/BlueSpiceUEModuleHTML',
 		];
 	}
 
