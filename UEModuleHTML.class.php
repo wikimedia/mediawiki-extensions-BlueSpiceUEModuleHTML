@@ -112,7 +112,7 @@ class UEModuleHTML extends BsExtensionMW {
 			'title' => wfMessage( 'bs-uemodulehtml-widgetlink-single-title' )->text(),
 			'text' => wfMessage( 'bs-uemodulehtml-widgetlink-single-text' )->text(),
 			'class' => 'bs-ue-export-link',
-			'classes' => 'icon-file-zip bs-ue-export-link'
+			'iconClass' => 'icon-file-zip bs-ue-export-link'
 		);
 	}
 
