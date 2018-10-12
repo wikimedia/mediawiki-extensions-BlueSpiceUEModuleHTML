@@ -28,6 +28,8 @@
  * @filesource
  */
 
+use BlueSpice\SkinData;
+
 /**
  * Base class for UniversalExport HTML Module extension
  * @package BlueSpice_Extensions
@@ -84,6 +86,10 @@ class UEModuleHTML extends BsExtensionMW {
 		} else {
 			$aToolbox['uemodulehtml'] = $this->buildContentAction();
 		}
+		if( !isset( $oTemplate->data[SkinData::TOOLBOX_BLACKLIST] ) ) {
+			$oTemplate->data[SkinData::TOOLBOX_BLACKLIST] = [];
+		}
+		$oTemplate->data[SkinData::TOOLBOX_BLACKLIST][] = 'uemodulehtml';
 
 		return true;
 	}
