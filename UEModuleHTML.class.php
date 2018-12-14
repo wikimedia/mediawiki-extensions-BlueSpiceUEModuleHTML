@@ -54,6 +54,10 @@ class UEModuleHTML extends BsExtensionMW {
 	 * @return boolean
 	 */
 	public function onSkinTemplateOutputPageBeforeExec( &$oSkin, &$oTemplate ) {
+		if ( $oSkin->getTitle()->isContentPage() === false ) {
+			return true;
+		}
+
 		$oTemplate->data['bs_export_menu'][] = $this->buildContentAction();
 
 		return true;
@@ -112,14 +116,15 @@ class UEModuleHTML extends BsExtensionMW {
 			unset( $aCurrentQueryParams['title'] );
 		}
 		$aCurrentQueryParams['ue[module]'] = 'html';
-		return array(
+
+		return [
 			'id' => 'bs-ta-uemodulehtml',
 			'href' => $oSpecialPage->getLinkUrl( $aCurrentQueryParams ),
 			'title' => wfMessage( 'bs-uemodulehtml-widgetlink-single-title' )->text(),
 			'text' => wfMessage( 'bs-uemodulehtml-widgetlink-single-text' )->text(),
 			'class' => 'bs-ue-export-link',
 			'iconClass' => 'icon-file-zip bs-ue-export-link'
-		);
+		];
 	}
 
 	/**
