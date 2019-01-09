@@ -22,7 +22,7 @@ class BsHTMLArchiver extends BsPDFServlet {
 
 		//Save temporary
 		$oStatus = BsFileSystemHelper::ensureCacheDirectory('UEModuleHTML');
-		$sTmpZipFile = $oStatus->getValue().DS.$this->aParams['document-token'].'.zip';
+		$sTmpZipFile = $oStatus->getValue() . '/' . $this->aParams['document-token'] . '.zip';
 
 		$oZip = new ZipArchive();
 		$oZip->open( $sTmpZipFile, ZipArchive::CREATE );
