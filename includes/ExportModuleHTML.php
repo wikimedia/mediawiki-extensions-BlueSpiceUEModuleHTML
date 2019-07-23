@@ -1,6 +1,6 @@
 <?php
 /**
- * BsExportModuleHTML.
+ * ExportModuleHTML.
  *
  * Part of BlueSpice MediaWiki
  *
@@ -13,17 +13,21 @@
  */
 
 /**
- * UniversalExport BsExportModuleHTML class.
+ * UniversalExport ExportModuleHTML class.
  * @package BlueSpice_Extensions
  * @subpackage UEModuleHTML
  */
-class BsExportModuleHTML implements BsUniversalExportModule {
+class ExportModuleHTML implements BsUniversalExportModule {
 
 	/**
 	 * Implementation of BsUniversalExportModule interface. Uses the
 	 * Java library xhtmlrenderer to create a HTML file.
-	 * @param SpecialUniversalExport $caller
-	 * @return array array( 'mime-type' => 'application/zip', 'filename' => 'Filename.zip', 'content' => '8F3BC3025A7...' );
+	 * @param SpecialUniversalExport &$caller
+	 * @return array array(
+	 * 'mime-type' => 'application/zip',
+	 * 'filename' => 'Filename.zip',
+	 * 'content' => '8F3BC3025A7...'
+	 * );
 	 */
 	public function createExportFile( &$caller ) {
 		global $wgUser, $wgRequest;
@@ -35,86 +39,90 @@ class BsExportModuleHTML implements BsUniversalExportModule {
 		$pageParams['title']      = $caller->oRequestedTitle->getPrefixedText();
 		$pageParams['article-id'] = $caller->oRequestedTitle->getArticleID();
 		$pageParams['oldid']      = $wgRequest->getInt( 'oldid', 0 );
-		if( $config->get( 'UEModuleHTMLSuppressNS' ) ) {
+		if ( $config->get( 'UEModuleHTMLSuppressNS' ) ) {
 			$pageParams['display-title'] = $caller->oRequestedTitle->getText();
 		}
-		//If we are in history mode and we are relative to an oldid
-		$pageParams['direction'] = $wgRequest->getVal('direction', '');
-		if( !empty( $pageParams['direction'] ) ) {
+		// If we are in history mode and we are relative to an oldid
+		$pageParams['direction'] = $wgRequest->getVal( 'direction', '' );
+		if ( !empty( $pageParams['direction'] ) ) {
 			$currentRevision = Revision::newFromId( $pageParams['oldid'] );
-			switch( $pageParams['direction'] ) {
+			switch ( $pageParams['direction'] ) {
 				case 'next': $currentRevision = $currentRevision->getNext();
 					break;
 				case 'prev': $currentRevision = $currentRevision->getPrevious();
 					break;
-				default: break;
+				default:
+break;
 			}
-			if( $currentRevision !== null ) {
+			if ( $currentRevision !== null ) {
 				$pageParams['oldid'] = $currentRevision->getId();
 			}
 		}
 
-		//Get Page DOM
+		// Get Page DOM
 		$pageDOM = BsPDFPageProvider::getPage( $pageParams );
 
-		//Prepare Template
-		$templateParams = array(
+		// Prepare Template
+		$templateParams = [
 			'path'     => $config->get( 'UEModulePDFTemplatePath' ),
 			'template' => $config->get( 'UEModulePDFDefaultTemplate' ),
 			'language' => $wgUser->getOption( 'language', 'en' ),
 			'meta'     => $pageDOM['meta']
-		);
+		];
 
-		//Override template param if needed. The override may come from GET (&ue[template]=...) or from a tag (<bs:ueparams template="..." />)
-		//TODO: Make more generic
-		if(!empty( $caller->aParams['template'] ) ) {
+		// Override template param if needed.
+		// The override may come from GET (&ue[template]=...)
+		// or from a tag (<bs:ueparams template="..." />)
+		// TODO: Make more generic
+		if ( !empty( $caller->aParams['template'] ) ) {
 			$templateParams['template'] = $caller->aParams['template'];
 		}
 
-		//TODO: decouple from UEModulePDF
+		// TODO: decouple from UEModulePDF
 		$template = BsPDFTemplateProvider::getTemplate( $templateParams );
 
-		//Combine Page Contents and Template
+		// Combine Page Contents and Template
 		$DOM = $template['dom'];
 
-		//Add the bookmarks
+		// Add the bookmarks
 		$template['bookmarks-element']->appendChild(
 			$template['dom']->importNode( $pageDOM['bookmark-element'], true )
 		);
 		$template['title-element']->nodeValue = $caller->oRequestedTitle->getPrefixedText();
 
-		$contents = array(
-			'content' => array( $pageDOM['dom']->documentElement )
-		);
-		\Hooks::run( 'BSUEModuleHTMLBeforeAddingContent', array( &$template, &$contents ) );
+		$contents = [
+			'content' => [ $pageDOM['dom']->documentElement ]
+		];
+		\Hooks::run( 'BSUEModuleHTMLBeforeAddingContent', [ &$template, &$contents ] );
 
 		$contentTags = $DOM->getElementsByTagName( 'content' );
 		$i = $contentTags->length - 1;
-		while( $i > -1 ){
-			$contentTag = $contentTags->item($i);
-			$key = $contentTag->getAttribute('key');
-			if( isset($contents[$key] ) ) {
-				foreach($contents[$key] as $node ) {
+		while ( $i > -1 ) {
+			$contentTag = $contentTags->item( $i );
+			$key = $contentTag->getAttribute( 'key' );
+			if ( isset( $contents[$key] ) ) {
+				foreach ( $contents[$key] as $node ) {
 					$node = $DOM->importNode( $node, true );
 					$contentTag->parentNode->insertBefore( $node, $contentTag );
 				}
 			}
-			$contentTag->parentNode->removeChild($contentTag);
+			$contentTag->parentNode->removeChild( $contentTag );
 			$i--;
 		}
 
-		$caller->aParams['document-token'] = md5( $caller->oRequestedTitle->getPrefixedText() ).'-'.$caller->aParams['oldid'];
+		$caller->aParams['document-token'] = md5( $caller->oRequestedTitle->getPrefixedText() )
+			. '-' . $caller->aParams['oldid'];
 		$caller->aParams['title'] = $caller->oRequestedTitle->getText();
 		$caller->aParams['resources']      = $template['resources'];
 
-		\Hooks::run( 'BSUEModuleHTMLBeforeCreateHTML', array( $this, $DOM, $caller ) );
+		\Hooks::run( 'BSUEModuleHTMLBeforeCreateHTML', [ $this, $DOM, $caller ] );
 
-		//Prepare response
-		$response = array(
+		// Prepare response
+		$response = [
 			'mime-type' => 'application/zip',
 			'filename'  => '%s.zip',
 			'content'   => ''
-		);
+		];
 
 		if ( RequestContext::getMain()->getRequest()->getVal( 'debugformat', '' ) == 'html' ) {
 			$response['content'] = $DOM->saveXML( $DOM->documentElement );
@@ -129,7 +137,7 @@ class BsExportModuleHTML implements BsUniversalExportModule {
 
 		$this->modifyPDFSpecificStuff( $caller->aParams, $DOM );
 
-		$HTMLArchiver = new BsHTMLArchiver( $caller->aParams );
+		$HTMLArchiver = new HTMLArchiver( $caller->aParams );
 		$response['content'] = $HTMLArchiver->createHTML( $DOM );
 
 		$response['filename'] = sprintf(
@@ -148,8 +156,14 @@ class BsExportModuleHTML implements BsUniversalExportModule {
 	public function getOverview() {
 		$moduleOverviewView = new ViewExportModuleOverview();
 
-		$moduleOverviewView->setOption( 'module-title', wfMessage( 'bs-uemodulehtml-overview-title' )->plain() );
-		$moduleOverviewView->setOption( 'module-description', wfMessage( 'bs-uemodulehtml-overview-description' )->plain() );
+		$moduleOverviewView->setOption(
+			'module-title',
+			wfMessage( 'bs-uemodulehtml-overview-title' )->plain()
+		);
+		$moduleOverviewView->setOption(
+			'module-description',
+			wfMessage( 'bs-uemodulehtml-overview-description' )->plain()
+		);
 		$moduleOverviewView->setOption( 'module-bodycontent', '' );
 
 		return $moduleOverviewView;
@@ -158,28 +172,29 @@ class BsExportModuleHTML implements BsUniversalExportModule {
 	/**
 	 * This is really ugly! As we use the same templates as UEModulePDF we have
 	 * to change some stuff, like embedded fonts and running elements...
-	 * @param $DOM DOMDocument
+	 * @param array &$params
+	 * @param /DOMDocument $DOM
 	 */
 	public function modifyPDFSpecificStuff( &$params, $DOM ) {
-
-		//Remove fonts
-		foreach($params['resources']['STYLESHEET'] as $key => $sValue ) {
-			if( strtoupper(substr($params['resources']['STYLESHEET'][$key], -3) ) == 'TTF' ) {
+		// Remove fonts
+		foreach ( $params['resources']['STYLESHEET'] as $key => $sValue ) {
+			if ( strtoupper( substr( $params['resources']['STYLESHEET'][$key], -3 ) ) == 'TTF' ) {
 				unset( $params['resources']['STYLESHEET'][$key] );
 			}
 		}
 
-		//Remove <bookmarks>
-		$bookmarksElement = $DOM->getElementsByTagName('bookmarks')->item(0);
+		// Remove <bookmarks>
+		$bookmarksElement = $DOM->getElementsByTagName( 'bookmarks' )->item( 0 );
 		$bookmarksElement->parentNode->removeChild( $bookmarksElement );
 
 		$DOMXPath = new DOMXPath( $DOM );
 		$runningElements = $DOMXPath->query(
 			"//*[starts-with(@id, 'bs-running')] | //*[contains(@class, 'bs-running')]"
 		);
-		$runningElementsList = array();
-		foreach( $runningElements as $RElem ) { $runningElementsList[] = $RElem; }
-		foreach( $runningElementsList as $RElem ) {
+		$runningElementsList = [];
+		foreach ( $runningElements as $RElem ) { $runningElementsList[] = $RElem;
+  }
+		foreach ( $runningElementsList as $RElem ) {
 			$RElem->parentNode->removeChild( $RElem );
 		}
 	}
