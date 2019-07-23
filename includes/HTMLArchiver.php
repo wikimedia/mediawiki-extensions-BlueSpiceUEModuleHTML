@@ -2,68 +2,68 @@
 //TODO: decouple from UEModulePDF
 class BsHTMLArchiver extends BsPDFServlet {
 
-	public function __construct( $aParams ) {
-		$this->aParams = $aParams;
-		$this->aFiles =  isset($aParams['resources']) ? $aParams['resources'] : array();
+	public function __construct( $params ) {
+		$this->aParams = $params;
+		$this->aFiles =  isset($params['resources']) ? $params['resources'] : array();
 	}
 
-	public function createPDF(&$oHtmlDOM) {
-		return $this->createHTML($oHtmlDOM);
+	public function createPDF(&$HtmlDOM) {
+		return $this->createHTML($HtmlDOM);
 	}
 
 	/**
 	 * Gets a DOMDocument, searches it for files and creates a ZIP with files and markup.
-	 * @param DOMDocument $oHtmlDOM The source markup
+	 * @param DOMDocument $HtmlDOM The source markup
 	 * @return string The resulting Zip archive as bytes
 	 */
-	public function createHTML(&$oHtmlDOM) {
+	public function createHTML(&$HtmlDOM) {
 
-		$this->findFiles( $oHtmlDOM );
+		$this->findFiles( $HtmlDOM );
 
 		//Save temporary
-		$oStatus = BsFileSystemHelper::ensureCacheDirectory('UEModuleHTML');
-		$sTmpZipFile = $oStatus->getValue() . '/' . $this->aParams['document-token'] . '.zip';
+		$status = BsFileSystemHelper::ensureCacheDirectory('UEModuleHTML');
+		$tmpZipFile = $status->getValue() . '/' . $this->aParams['document-token'] . '.zip';
 
-		$oZip = new ZipArchive();
-		$oZip->open( $sTmpZipFile, ZipArchive::CREATE );
+		$zip = new ZipArchive();
+		$zip->open( $tmpZipFile, ZipArchive::CREATE );
 		//TODO: Find solution for encoding issue:
 		//https://github.com/owncloud/core/pull/1117
 		//http://stackoverflow.com/questions/20600843/php-ziparchive-non-english-filenames-return-funky-filenames-within-archive
 
-		foreach( $this->aFiles as $sType => $aFiles ) {
+		foreach( $this->aFiles as $type => $filesList ) {
 
 			//Backwards compatibility to old inconsitent PDFTemplates (having "STYLESHEET" as type but linnking to "stylesheets")
 			//TODO: Make conditional?
-			if( $sType == 'IMAGE' )      $sType = 'images';
-			if( $sType == 'STYLESHEET' ) $sType = 'stylesheets';
-			$sAssetDir = $this->aParams['title'].'/'.$sType;
+			if( $type == 'IMAGE' )      $type = 'images';
+			if( $type == 'STYLESHEET' ) $type = 'stylesheets';
+			$assetDir = $this->aParams['title'].'/'.$type;
 
-			$oZip->addEmptyDir( $sAssetDir );
+			$zip->addEmptyDir( $assetDir );
 
-			foreach( $aFiles as $sFileName => $sFilePath ) {
-				if( file_exists( $sFilePath) == false ) {
-					$aErrors[] = $sFilePath;
+			foreach( $filesList as $fileName => $filePath ) {
+				if( file_exists( $filePath) == false ) {
+					$errors[] = $filePath;
 					continue;
 				}
-				$oZip->addFile( $sFilePath, $sAssetDir.'/'.$sFileName );
+				$zip->addFile( $filePath, $assetDir.'/'.$fileName );
 			}
 
-			if( !empty( $aErrors ) ) {
+			if( !empty( $errors ) ) {
 				wfDebugLog(
 					'BS::UEModuleHTML',
-					'BsHTMLArchiver::createHTML: Error trying to fetch files:'."\n". var_export( $aErrors, true )
+					'BsHTMLArchiver::createHTML: Error trying to fetch files:'."\n". var_export( $errors, true )
 				);
 			}
 		}
-		\Hooks::run( 'BSUEModuleHTMLCreateHTMLBeforeSend', array( $this, &$aOptions, $oHtmlDOM ) );
+		\Hooks::run( 'BSUEModuleHTMLCreateHTMLBeforeSend', array( $this, &$options, $HtmlDOM ) );
 		//HINT: http://www.php.net/manual/en/class.domdocument.php#96055
 		//But: Formated Output is evil because is will destroy formatting in <pre> Tags!
-		$oZip->addFromString($this->aParams['title'].'/index.html', $oHtmlDOM->saveHTML() );
-		$oZip->close();
+		$zip->addFromString($this->aParams['title'].'/index.html', $HtmlDOM->saveHTML() );
+		$zip->close();
 
-		$vPdfByteArray = file_get_contents( $sTmpZipFile );
+		$pdfByteArray = file_get_contents( $tmpZipFile );
 
-		if( $vPdfByteArray == false ) {
+		if( $pdfByteArray == false ) {
 			wfDebugLog(
 				'BS::UEModulePDF',
 				'BsPDFServlet::createPDF: Failed creating "'.$this->aParams['document-token'].'"'
@@ -75,9 +75,9 @@ class BsHTMLArchiver extends BsPDFServlet {
 
 		//Remove temporary file
 		if( !$config->get( 'TestMode' ) ) {
-			unlink( $sTmpZipFile );
+			unlink( $tmpZipFile );
 		}
 
-		return $vPdfByteArray;
+		return $pdfByteArray;
 	}
 }
