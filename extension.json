@@ -36,9 +36,9 @@
 		]
 	},
 	"AutoloadClasses": {
-		"UEModuleHTML": "UEModuleHTML.class.php",
-		"BsExportModuleHTML": "includes/ExportModuleHTML.class.php",
-		"BsHTMLArchiver": "includes/HTMLArchiver.php"
+		"UEModuleHTML": "UEModuleHTML.php",
+		"ExportModuleHTML": "includes/ExportModuleHTML.php",
+		"HTMLArchiver": "includes/HTMLArchiver.php"
 	},
 	"AutoloadNamespaces": {
 		"BlueSpice\\UEModuleHTML\\": "src/"
