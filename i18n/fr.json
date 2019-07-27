@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Derugon"
+		]
+	},
+	"bs-uemodulehtml-extension-description": "Activer l’export en HTML",
+	"bs-uemodulehtml-pref-DefaultTemplate": "Modèle standard",
+	"bs-uemodulehtml-pref-SuppressNS": "Masquer le préfixe de l’espace de nom en HTML",
+	"bs-uemodulehtml-pref-Backend": "Arrière-plan",
+	"bs-uemodulehtml-widgetlink-single-text": "Page simple HTML (archivée)",
+	"bs-uemodulehtml-widgetlink-single-title": "Exporter cette page en HTML avec ses ressources dans une archive",
+	"bs-uemodulehtml-overview-title": "Document HTML (archivé)",
+	"bs-uemodulehtml-overview-description": "Exporter des pages (SpecialPages et ContentPages) en HTML."
+}
