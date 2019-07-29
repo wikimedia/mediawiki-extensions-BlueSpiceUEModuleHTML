@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ykhwong"
+		]
+	},
+	"bs-uemodulehtml-extension-description": "HTML로 내보내기 활성화",
+	"bs-uemodulehtml-pref-DefaultTemplate": "표준 템플릿",
+	"bs-uemodulehtml-pref-Backend": "백엔드"
+}
