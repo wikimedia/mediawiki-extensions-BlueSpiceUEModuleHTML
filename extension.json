@@ -9,10 +9,10 @@
 	"descriptionmsg": "bs-uemodulehtml-extension-description",
 	"type": "bluespice",
 	"requires": {
-		"MediaWiki": ">= 1.34.0",
+		"MediaWiki": "~1.31",
 		"extensions": {
-			"BlueSpiceFoundation": ">= 3.2",
-			"BlueSpiceUniversalExport": ">= 3.2"
+			"BlueSpiceFoundation": "~3.1",
+			"BlueSpiceUniversalExport": "~3.1"
 		}
 	},
 	"attributes": {
