@@ -49,51 +49,51 @@ class UEModuleHTML extends BsExtensionMW {
 
 	/**
 	 * Hook to insert the PDF-Export link if BlueSpiceSkin is active
-	 * @param SkinTemplate $oSkin
-	 * @param QuickTemplate $oTemplate
+	 * @param SkinTemplate $skin
+	 * @param QuickTemplate $template
 	 * @return boolean
 	 */
-	public function onSkinTemplateOutputPageBeforeExec( &$oSkin, &$oTemplate ) {
-		if ( $oSkin->getTitle()->isContentPage() === false ) {
+	public function onSkinTemplateOutputPageBeforeExec( &$skin, &$template ) {
+		if ( $skin->getTitle()->isContentPage() === false ) {
 			return true;
 		}
 
-		$oTemplate->data['bs_export_menu'][] = $this->buildContentAction();
+		$template->data['bs_export_menu'][] = $this->buildContentAction();
 
 		return true;
 	}
 
 	/**
 	 * Hook to be executed when the Vector Skin is activated to add the PDF-Export Link to the Toolbox
-	 * @param SkinTemplate $oTemplate
-	 * @param Array $aToolbox
+	 * @param SkinTemplate $template
+	 * @param Array $toolBox
 	 * @return boolean
 	 */
-	public function onBaseTemplateToolbox( &$oTemplate, &$aToolbox ) {
-		$oTitle = RequestContext::getMain()->getTitle();
+	public function onBaseTemplateToolbox( &$template, &$toolBox ) {
+		$title = RequestContext::getMain()->getTitle();
 		//if the BlueSpiceSkin is activated we don't need to add the Link to the Toolbox,
 		//onSkinTemplateOutputPageBeforeExec will handle it
-		if ( $oTemplate instanceof BsBaseTemplate || !$oTitle->isContentPage() ) {
+		if ( $template instanceof BsBaseTemplate || !$title->isContentPage() ) {
 			return true;
 		}
 
 		//if "print" is set insert pdf export afterwards
-		if ( isset( $aToolbox['print'] ) ) {
-			$aToolboxNew = array();
-			foreach ( $aToolbox as $sKey => $aValue ) {
-				$aToolboxNew[$sKey] = $aValue;
-				if ( $sKey === "print" ) {
-					$aToolboxNew['uemodulehtml'] = $this->buildContentAction();
+		if ( isset( $toolBox['print'] ) ) {
+			$toolBoxNew = array();
+			foreach ( $toolBox as $key => $value ) {
+				$toolBoxNew[$key] = $value;
+				if ( $key === "print" ) {
+					$toolBoxNew['uemodulehtml'] = $this->buildContentAction();
 				}
 			}
-			$aToolbox = $aToolboxNew;
+			$toolBox = $toolBoxNew;
 		} else {
-			$aToolbox['uemodulehtml'] = $this->buildContentAction();
+			$toolBox['uemodulehtml'] = $this->buildContentAction();
 		}
-		if( !isset( $oTemplate->data[SkinData::TOOLBOX_BLACKLIST] ) ) {
-			$oTemplate->data[SkinData::TOOLBOX_BLACKLIST] = [];
+		if( !isset( $template->data[SkinData::TOOLBOX_BLACKLIST] ) ) {
+			$template->data[SkinData::TOOLBOX_BLACKLIST] = [];
 		}
-		$oTemplate->data[SkinData::TOOLBOX_BLACKLIST][] = 'uemodulehtml';
+		$template->data[SkinData::TOOLBOX_BLACKLIST][] = 'uemodulehtml';
 
 		return true;
 	}
@@ -104,22 +104,22 @@ class UEModuleHTML extends BsExtensionMW {
 	 * @return Array The ContentAction Array
 	 */
 	private function buildContentAction() {
-		$aCurrentQueryParams = $this->getRequest()->getValues();
-		if ( isset( $aCurrentQueryParams['title'] ) ) {
-			$sTitle = $aCurrentQueryParams['title'];
+		$currentQueryParams = $this->getRequest()->getValues();
+		if ( isset( $currentQueryParams['title'] ) ) {
+			$title = $currentQueryParams['title'];
 		} else {
-			$sTitle = '';
+			$title = '';
 		}
-		$sSpecialPageParameter = BsCore::sanitize( $sTitle, '', BsPARAMTYPE::STRING );
-		$oSpecialPage = SpecialPage::getTitleFor( 'UniversalExport', $sSpecialPageParameter );
-		if ( isset( $aCurrentQueryParams['title'] ) ) {
-			unset( $aCurrentQueryParams['title'] );
+		$specialPageParameter = BsCore::sanitize( $title, '', BsPARAMTYPE::STRING );
+		$specialPage = SpecialPage::getTitleFor( 'UniversalExport', $specialPageParameter );
+		if ( isset( $currentQueryParams['title'] ) ) {
+			unset( $currentQueryParams['title'] );
 		}
-		$aCurrentQueryParams['ue[module]'] = 'html';
+		$currentQueryParams['ue[module]'] = 'html';
 
 		return [
 			'id' => 'bs-ta-uemodulehtml',
-			'href' => $oSpecialPage->getLinkUrl( $aCurrentQueryParams ),
+			'href' => $specialPage->getLinkUrl( $currentQueryParams ),
 			'title' => wfMessage( 'bs-uemodulehtml-widgetlink-single-title' )->text(),
 			'text' => wfMessage( 'bs-uemodulehtml-widgetlink-single-text' )->text(),
 			'class' => 'bs-ue-export-link',
@@ -129,46 +129,46 @@ class UEModuleHTML extends BsExtensionMW {
 
 	/**
 	 *
-	 * @param SpecialUniversalExport $oSpecialPage
-	 * @param string $sParam
-	 * @param array $aModules
+	 * @param SpecialUniversalExport $specialPage
+	 * @param string $param
+	 * @param array $modules
 	 * @return true
 	 */
-	public function onBSUniversalExportSpecialPageExecute( $oSpecialPage, $sParam, &$aModules ) {
-		$aModules['html'] = new BsExportModuleHTML();
+	public function onBSUniversalExportSpecialPageExecute( $specialPage, $param, &$modules ) {
+		$modules['html'] = new BsExportModuleHTML();
 		return true;
 	}
 
 	/**
 	 * Hook-Handler method for the 'BSUniversalExportGetWidget' event.
-	 * @param UniversalExport $oUniversalExport
-	 * @param array $aModules
-	 * @param Title $oSpecialPage
-	 * @param Title $oCurrentTitle
-	 * @param array $aCurrentQueryParams
+	 * @param UniversalExport $universalExport
+	 * @param array $modules
+	 * @param Title $specialPage
+	 * @param Title $currentTitle
+	 * @param array $currentQueryParams
 	 * @return boolean
 	 */
-	public function onBSUniversalExportGetWidget( $oUniversalExport, &$aModules, $oSpecialPage, $oCurrentTitle, $aCurrentQueryParams ) {
-		$aCurrentQueryParams['ue[module]'] = 'html';
-		$aLinks = array();
-		$aLinks['html-single'] = array(
-			'URL'     => htmlspecialchars( $oSpecialPage->getLinkUrl( $aCurrentQueryParams ) ),
+	public function onBSUniversalExportGetWidget( $universalExport, &$modules, $specialPage, $currentTitle, $currentQueryParams ) {
+		$currentQueryParams['ue[module]'] = 'html';
+		$links = array();
+		$links['html-single'] = array(
+			'URL'     => htmlspecialchars( $specialPage->getLinkUrl( $currentQueryParams ) ),
 			'TITLE'   => wfMessage( 'bs-uemodulehtml-widgetlink-single-title' )->text(),
 			'CLASSES' => 'bs-uemodulehtml-single',
 			'TEXT'    => wfMessage( 'bs-uemodulehtml-widgetlink-single-text' )->text(),
 		);
 
-		\Hooks::run( 'BSUEModuleHTMLBeforeCreateWidget', array( $this, $oSpecialPage, &$aLinks, $aCurrentQueryParams ) );
+		\Hooks::run( 'BSUEModuleHTMLBeforeCreateWidget', array( $this, $specialPage, &$links, $currentQueryParams ) );
 
-		$oHTMLView = new ViewBaseElement();
-		$oHTMLView->setAutoWrap( '<ul>###CONTENT###</ul>' );
-		$oHTMLView->setTemplate( '<li><a href="{URL}" rel="nofollow" title="{TITLE}" class="{CLASSES}">{TEXT}</a></li>' );#
+		$HTMLView = new ViewBaseElement();
+		$HTMLView->setAutoWrap( '<ul>###CONTENT###</ul>' );
+		$HTMLView->setTemplate( '<li><a href="{URL}" rel="nofollow" title="{TITLE}" class="{CLASSES}">{TEXT}</a></li>' );#
 
-		foreach( $aLinks as $sKey => $aData ) {
-			$oHTMLView->addData( $aData );
+		foreach( $links as $key => $aData ) {
+			$HTMLView->addData( $aData );
 		}
 
-		$aModules[] = $oHTMLView;
+		$modules[] = $HTMLView;
 		return true;
 	}
 }
