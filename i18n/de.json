@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Robert Vogel <vogel@hallowelt.biz>",
-			"Mcandri13"
+			"Mcandri13",
+			"Mglaser"
 		]
 	},
 	"bs-uemodulehtml-extension-description": "Ermöglicht das Exportieren nach HTML",
@@ -11,5 +12,6 @@
 	"bs-uemodulehtml-widgetlink-single-text": "HTML Einzelseite (archiviert)",
 	"bs-uemodulehtml-widgetlink-single-title": "Diese Seite im HTML Format zusammen mit ihren Ressourcen in einem ZIP-Archiv ausgeben.",
 	"bs-uemodulehtml-overview-title": "HTML Dokument (archiviert)",
-	"bs-uemodulehtml-overview-description": "Exportiert Wikiseiten (Spezialseiten und Inhaltsseiten) nach HTML."
+	"bs-uemodulehtml-overview-description": "Exportiert Wikiseiten (Spezialseiten und Inhaltsseiten) nach HTML.",
+	"bs-uemodulehtml-pref-Backend": "Backend"
 }
