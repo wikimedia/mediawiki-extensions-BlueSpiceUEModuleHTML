@@ -30,7 +30,7 @@ class ExportModuleHTML implements BsUniversalExportModule {
 	 * );
 	 */
 	public function createExportFile( &$caller ) {
-		global $wgUser, $wgRequest;
+		global $wgRequest;
 		$pageParams = $caller->aParams;
 
 		$config = \BlueSpice\Services::getInstance()->getConfigFactory()
@@ -66,7 +66,7 @@ break;
 		$templateParams = [
 			'path'     => $config->get( 'UEModulePDFTemplatePath' ),
 			'template' => $config->get( 'UEModulePDFDefaultTemplate' ),
-			'language' => $wgUser->getOption( 'language', 'en' ),
+			'language' => $caller->getUser()->getOption( 'language', 'en' ),
 			'meta'     => $pageDOM['meta']
 		];
 
