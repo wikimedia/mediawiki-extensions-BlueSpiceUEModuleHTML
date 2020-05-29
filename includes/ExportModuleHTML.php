@@ -192,8 +192,9 @@ break;
 			"//*[starts-with(@id, 'bs-running')] | //*[contains(@class, 'bs-running')]"
 		);
 		$runningElementsList = [];
-		foreach ( $runningElements as $RElem ) { $runningElementsList[] = $RElem;
-  }
+		foreach ( $runningElements as $RElem ) {
+			$runningElementsList[] = $RElem;
+		}
 		foreach ( $runningElementsList as $RElem ) {
 			$RElem->parentNode->removeChild( $RElem );
 		}
