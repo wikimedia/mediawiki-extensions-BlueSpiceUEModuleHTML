@@ -43,7 +43,10 @@ class UEModuleHTML extends BsExtensionMW {
 	protected function initExt() {
 		$this->setHook( 'BSUniversalExportGetWidget' );
 		$this->setHook( 'BSUniversalExportSpecialPageExecute' );
-		$this->setHook( 'SkinTemplateOutputPageBeforeExec' );
+		$this->setHook(
+			'ChameleonSkinTemplateOutputPageBeforeExec',
+			'onSkinTemplateOutputPageBeforeExec'
+		);
 		$this->setHook( 'BaseTemplateToolbox' );
 	}
 
