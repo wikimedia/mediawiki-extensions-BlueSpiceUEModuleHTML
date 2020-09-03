@@ -1,4 +1,6 @@
 <?php
+use MediaWiki\MediaWikiServices;
+
 // TODO: decouple from UEModulePDF
 class HTMLArchiver extends BsPDFServlet {
 
@@ -80,7 +82,7 @@ class HTMLArchiver extends BsPDFServlet {
 			);
 		}
 
-		$config = \BlueSpice\Services::getInstance()->getConfigFactory()
+		$config = MediaWikiServices::getInstance()->getConfigFactory()
 			->makeConfig( 'bsg' );
 
 		// Remove temporary file
