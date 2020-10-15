@@ -46,14 +46,21 @@ class ExportModuleHTML implements BsUniversalExportModule {
 		// If we are in history mode and we are relative to an oldid
 		$pageParams['direction'] = $wgRequest->getVal( 'direction', '' );
 		if ( !empty( $pageParams['direction'] ) ) {
-			$currentRevision = Revision::newFromId( $pageParams['oldid'] );
+			$lookup = MediaWikiServices::getInstance()->getRevisionLookup();
+			$currentRevision = $lookup->getRevisionById( $pageParams['oldid'] );
 			switch ( $pageParams['direction'] ) {
-				case 'next': $currentRevision = $currentRevision->getNext();
+				case 'next':
+					$currentRevision = $lookup->getNextRevision(
+						$currentRevision
+					);
 					break;
-				case 'prev': $currentRevision = $currentRevision->getPrevious();
+				case 'prev':
+					$currentRevision = $lookup->getPreviousRevision(
+						$currentRevision
+					);
 					break;
 				default:
-break;
+					break;
 			}
 			if ( $currentRevision !== null ) {
 				$pageParams['oldid'] = $currentRevision->getId();
