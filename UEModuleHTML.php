@@ -69,7 +69,7 @@ class UEModuleHTML extends BsExtensionMW {
 	/**
 	 * Hook to be executed when the Vector Skin is activated to add the PDF-Export Link to the Toolbox
 	 * @param SkinTemplate &$template
-	 * @param Array &$toolBox
+	 * @param array &$toolBox
 	 * @return bool
 	 */
 	public function onBaseTemplateToolbox( &$template, &$toolBox ) {
@@ -103,7 +103,7 @@ class UEModuleHTML extends BsExtensionMW {
 
 	/**
 	 * Builds the ContentAction Array fort the current page
-	 * @return Array The ContentAction Array
+	 * @return array The ContentAction Array
 	 */
 	private function buildContentAction() {
 		$currentQueryParams = $this->getRequest()->getValues();
