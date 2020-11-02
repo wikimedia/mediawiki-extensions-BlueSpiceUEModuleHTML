@@ -29,6 +29,7 @@
  */
 
 use BlueSpice\SkinData;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Base class for UniversalExport HTML Module extension
@@ -166,9 +167,14 @@ class UEModuleHTML extends BsExtensionMW {
 			'TEXT'    => wfMessage( 'bs-uemodulehtml-widgetlink-single-text' )->text(),
 		];
 
-		\Hooks::run(
+		MediaWikiServices::getInstance()->getHookContainer()->run(
 			'BSUEModuleHTMLBeforeCreateWidget',
-			[ $this, $specialPage, &$links, $currentQueryParams ]
+			[
+				$this,
+				$specialPage,
+				&$links,
+				$currentQueryParams
+			]
 		);
 
 		$HTMLView = new ViewBaseElement();

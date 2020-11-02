@@ -67,7 +67,14 @@ class HTMLArchiver extends BsPDFServlet {
 				);
 			}
 		}
-		\Hooks::run( 'BSUEModuleHTMLCreateHTMLBeforeSend', [ $this, &$options, $HtmlDOM ] );
+		MediaWikiServices::getInstance()->getHookContainer()->run(
+			'BSUEModuleHTMLCreateHTMLBeforeSend',
+			[
+				$this,
+				&$options,
+				$HtmlDOM
+			]
+		);
 		// HINT: http://www.php.net/manual/en/class.domdocument.php#96055
 		// But: Formated Output is evil because is will destroy formatting in <pre> Tags!
 		$zip->addFromString( $this->aParams['title'] . '/index.html', $HtmlDOM->saveHTML() );

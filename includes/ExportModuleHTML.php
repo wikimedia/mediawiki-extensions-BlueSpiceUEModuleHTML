@@ -101,7 +101,13 @@ class ExportModuleHTML implements BsUniversalExportModule {
 		$contents = [
 			'content' => [ $pageDOM['dom']->documentElement ]
 		];
-		\Hooks::run( 'BSUEModuleHTMLBeforeAddingContent', [ &$template, &$contents ] );
+		MediaWikiServices::getInstance()->getHookContainer()->run(
+			'BSUEModuleHTMLBeforeAddingContent',
+			[
+				&$template,
+				&$contents
+			]
+		);
 
 		$contentTags = $DOM->getElementsByTagName( 'content' );
 		$i = $contentTags->length - 1;
@@ -123,7 +129,14 @@ class ExportModuleHTML implements BsUniversalExportModule {
 		$caller->aParams['title'] = $caller->oRequestedTitle->getText();
 		$caller->aParams['resources']      = $template['resources'];
 
-		\Hooks::run( 'BSUEModuleHTMLBeforeCreateHTML', [ $this, $DOM, $caller ] );
+		MediaWikiServices::getInstance()->getHookContainer()->run(
+			'BSUEModuleHTMLBeforeCreateHTML',
+			[
+				$this,
+				$DOM,
+				$caller
+			]
+		);
 
 		// Prepare response
 		$response = [
