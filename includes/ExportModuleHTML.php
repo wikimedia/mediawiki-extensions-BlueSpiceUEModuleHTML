@@ -12,12 +12,15 @@
  * @filesource
  */
 
+use BlueSpice\UniversalExport\ExportModule;
+use MediaWiki\MediaWikiServices;
+
 /**
  * UniversalExport ExportModuleHTML class.
  * @package BlueSpice_Extensions
  * @subpackage UEModuleHTML
  */
-class ExportModuleHTML implements BsUniversalExportModule {
+class ExportModuleHTML extends ExportModule {
 
 	/**
 	 * Implementation of BsUniversalExportModule interface. Uses the

@@ -28,6 +28,11 @@
 					}
 				}
 			}
+		},
+		"BlueSpiceUniversalExport": {
+			"ModuleRegistry": {
+				"html": "\\ExportModuleHTML::factory"
+			}
 		}
 	},
 	"MessagesDirs": {
