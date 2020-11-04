@@ -28,8 +28,6 @@
  * @filesource
  */
 
-use BlueSpice\SkinData;
-
 /**
  * Base class for UniversalExport HTML Module extension
  * @package BlueSpice_Extensions
@@ -46,7 +44,6 @@ class UEModuleHTML extends BsExtensionMW {
 			'ChameleonSkinTemplateOutputPageBeforeExec',
 			'onSkinTemplateOutputPageBeforeExec'
 		);
-		$this->setHook( 'BaseTemplateToolbox' );
 	}
 
 	/**
@@ -61,41 +58,6 @@ class UEModuleHTML extends BsExtensionMW {
 		}
 
 		$template->data['bs_export_menu'][] = $this->buildContentAction();
-
-		return true;
-	}
-
-	/**
-	 * Hook to be executed when the Vector Skin is activated to add the PDF-Export Link to the Toolbox
-	 * @param SkinTemplate &$template
-	 * @param Array &$toolBox
-	 * @return bool
-	 */
-	public function onBaseTemplateToolbox( &$template, &$toolBox ) {
-		$title = RequestContext::getMain()->getTitle();
-		// if the BlueSpiceSkin is activated we don't need to add the Link to the Toolbox,
-		// onSkinTemplateOutputPageBeforeExec will handle it
-		if ( $template instanceof BsBaseTemplate || !$title->isContentPage() ) {
-			return true;
-		}
-
-		// if "print" is set insert pdf export afterwards
-		if ( isset( $toolBox['print'] ) ) {
-			$toolBoxNew = [];
-			foreach ( $toolBox as $key => $value ) {
-				$toolBoxNew[$key] = $value;
-				if ( $key === "print" ) {
-					$toolBoxNew['uemodulehtml'] = $this->buildContentAction();
-				}
-			}
-			$toolBox = $toolBoxNew;
-		} else {
-			$toolBox['uemodulehtml'] = $this->buildContentAction();
-		}
-		if ( !isset( $template->data[SkinData::TOOLBOX_BLACKLIST] ) ) {
-			$template->data[SkinData::TOOLBOX_BLACKLIST] = [];
-		}
-		$template->data[SkinData::TOOLBOX_BLACKLIST][] = 'uemodulehtml';
 
 		return true;
 	}
