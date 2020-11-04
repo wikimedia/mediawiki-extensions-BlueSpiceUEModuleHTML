@@ -39,18 +39,5 @@ class UEModuleHTML extends BsExtensionMW {
 	 * Initialization of UEModuleHTML extension
 	 */
 	protected function initExt() {
-		$this->setHook( 'BSUniversalExportSpecialPageExecute' );
-	}
-
-	/**
-	 *
-	 * @param SpecialUniversalExport $specialPage
-	 * @param string $param
-	 * @param array &$modules
-	 * @return true
-	 */
-	public function onBSUniversalExportSpecialPageExecute( $specialPage, $param, &$modules ) {
-		$modules['html'] = new ExportModuleHTML();
-		return true;
 	}
 }

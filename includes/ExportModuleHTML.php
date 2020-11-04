@@ -11,6 +11,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GPL-3.0-only
  * @filesource
  */
+use BlueSpice\UniversalExport\ExportModule;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -18,7 +19,7 @@ use MediaWiki\MediaWikiServices;
  * @package BlueSpice_Extensions
  * @subpackage UEModuleHTML
  */
-class ExportModuleHTML implements BsUniversalExportModule {
+class ExportModuleHTML extends ExportModule {
 
 	/**
 	 * Implementation of BsUniversalExportModule interface. Uses the
