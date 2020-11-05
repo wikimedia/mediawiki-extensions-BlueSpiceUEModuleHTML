@@ -41,7 +41,6 @@ class UEModuleHTML extends BsExtensionMW {
 	 * Initialization of UEModuleHTML extension
 	 */
 	protected function initExt() {
-		$this->setHook( 'BSUniversalExportGetWidget' );
 		$this->setHook( 'BSUniversalExportSpecialPageExecute' );
 		$this->setHook( 'SkinTemplateOutputPageBeforeExec' );
 		$this->setHook( 'BaseTemplateToolbox' );
@@ -135,50 +134,6 @@ class UEModuleHTML extends BsExtensionMW {
 	 */
 	public function onBSUniversalExportSpecialPageExecute( $specialPage, $param, &$modules ) {
 		$modules['html'] = new ExportModuleHTML();
-		return true;
-	}
-
-	/**
-	 * Hook-Handler method for the 'BSUniversalExportGetWidget' event.
-	 * @param UniversalExport $universalExport
-	 * @param array &$modules
-	 * @param Title $specialPage
-	 * @param Title $currentTitle
-	 * @param array $currentQueryParams
-	 * @return bool
-	 */
-	public function onBSUniversalExportGetWidget(
-		$universalExport,
-		&$modules,
-		$specialPage,
-		$currentTitle,
-		$currentQueryParams
-	) {
-		$currentQueryParams['ue[module]'] = 'html';
-		$links = [];
-		$links['html-single'] = [
-			'URL'     => htmlspecialchars( $specialPage->getLinkUrl( $currentQueryParams ) ),
-			'TITLE'   => wfMessage( 'bs-uemodulehtml-widgetlink-single-title' )->text(),
-			'CLASSES' => 'bs-uemodulehtml-single',
-			'TEXT'    => wfMessage( 'bs-uemodulehtml-widgetlink-single-text' )->text(),
-		];
-
-		\Hooks::run(
-			'BSUEModuleHTMLBeforeCreateWidget',
-			[ $this, $specialPage, &$links, $currentQueryParams ]
-		);
-
-		$HTMLView = new ViewBaseElement();
-		$HTMLView->setAutoWrap( '<ul>###CONTENT###</ul>' );
-		$HTMLView->setTemplate(
-			'<li><a href="{URL}" rel="nofollow" title="{TITLE}" class="{CLASSES}">{TEXT}</a></li>'
-		);
-
-		foreach ( $links as $key => $aData ) {
-			$HTMLView->addData( $aData );
-		}
-
-		$modules[] = $HTMLView;
 		return true;
 	}
 }
