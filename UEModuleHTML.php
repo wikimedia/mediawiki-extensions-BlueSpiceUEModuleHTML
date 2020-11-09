@@ -40,54 +40,6 @@ class UEModuleHTML extends BsExtensionMW {
 	 */
 	protected function initExt() {
 		$this->setHook( 'BSUniversalExportSpecialPageExecute' );
-		$this->setHook(
-			'ChameleonSkinTemplateOutputPageBeforeExec',
-			'onSkinTemplateOutputPageBeforeExec'
-		);
-	}
-
-	/**
-	 * Hook to insert the PDF-Export link if BlueSpiceSkin is active
-	 * @param SkinTemplate &$skin
-	 * @param QuickTemplate &$template
-	 * @return bool
-	 */
-	public function onSkinTemplateOutputPageBeforeExec( &$skin, &$template ) {
-		if ( $skin->getTitle()->isContentPage() === false ) {
-			return true;
-		}
-
-		$template->data['bs_export_menu'][] = $this->buildContentAction();
-
-		return true;
-	}
-
-	/**
-	 * Builds the ContentAction Array fort the current page
-	 * @return Array The ContentAction Array
-	 */
-	private function buildContentAction() {
-		$currentQueryParams = $this->getRequest()->getValues();
-		if ( isset( $currentQueryParams['title'] ) ) {
-			$title = $currentQueryParams['title'];
-		} else {
-			$title = '';
-		}
-		$specialPageParameter = BsCore::sanitize( $title, '', BsPARAMTYPE::STRING );
-		$specialPage = SpecialPage::getTitleFor( 'UniversalExport', $specialPageParameter );
-		if ( isset( $currentQueryParams['title'] ) ) {
-			unset( $currentQueryParams['title'] );
-		}
-		$currentQueryParams['ue[module]'] = 'html';
-
-		return [
-			'id' => 'bs-ta-uemodulehtml',
-			'href' => $specialPage->getLinkUrl( $currentQueryParams ),
-			'title' => wfMessage( 'bs-uemodulehtml-widgetlink-single-title' )->text(),
-			'text' => wfMessage( 'bs-uemodulehtml-widgetlink-single-text' )->text(),
-			'class' => 'bs-ue-export-link',
-			'iconClass' => 'icon-file-zip bs-ue-export-link'
-		];
 	}
 
 	/**
