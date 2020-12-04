@@ -19,7 +19,7 @@
 		"BlueSpiceFoundation": {
 			"Extensions": {
 				"BlueSpiceUEModuleHTML": {
-					"className": "UEModuleHTML",
+					"className": "\\BlueSpice\\UEModuleHTML\\Extension",
 					"extPath": "/BlueSpiceUEModuleHTML",
 					"package": "BlueSpice Pro",
 					"status": "stable",
@@ -41,7 +41,6 @@
 		]
 	},
 	"AutoloadClasses": {
-		"UEModuleHTML": "UEModuleHTML.php",
 		"ExportModuleHTML": "includes/ExportModuleHTML.php",
 		"HTMLArchiver": "includes/HTMLArchiver.php"
 	},
