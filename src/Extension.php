@@ -28,16 +28,14 @@
  * @filesource
  */
 
+namespace BlueSpice\UEModuleHTML;
+
+use BlueSpice\Extension as BaseExtension;
+
 /**
  * Base class for UniversalExport HTML Module extension
  * @package BlueSpice_Extensions
  * @subpackage UEModuleHTML
  */
-class UEModuleHTML extends BsExtensionMW {
-
-	/**
-	 * Initialization of UEModuleHTML extension
-	 */
-	protected function initExt() {
-	}
+class Extension extends BaseExtension {
 }
