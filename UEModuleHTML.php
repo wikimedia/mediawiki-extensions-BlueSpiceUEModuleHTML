@@ -102,22 +102,14 @@ class UEModuleHTML extends BsExtensionMW {
 	 * @return Array The ContentAction Array
 	 */
 	private function buildContentAction() {
-		$currentQueryParams = $this->getRequest()->getValues();
-		if ( isset( $currentQueryParams['title'] ) ) {
-			$title = $currentQueryParams['title'];
-		} else {
-			$title = '';
-		}
-		$specialPageParameter = BsCore::sanitize( $title, '', BsPARAMTYPE::STRING );
-		$specialPage = SpecialPage::getTitleFor( 'UniversalExport', $specialPageParameter );
-		if ( isset( $currentQueryParams['title'] ) ) {
-			unset( $currentQueryParams['title'] );
-		}
-		$currentQueryParams['ue[module]'] = 'html';
+		/** @var \BlueSpice\UniversalExport\Util $util */
+		$util = \MediaWiki\MediaWikiServices::getInstance()->getService(
+			'BSUniversalExportUtils'
+		);
 
 		return [
 			'id' => 'bs-ta-uemodulehtml',
-			'href' => $specialPage->getLinkUrl( $currentQueryParams ),
+			'href' =>  $util->getExportLink( $this->getRequest(), 'html' ),
 			'title' => wfMessage( 'bs-uemodulehtml-widgetlink-single-title' )->text(),
 			'text' => wfMessage( 'bs-uemodulehtml-widgetlink-single-text' )->text(),
 			'class' => 'bs-ue-export-link',
