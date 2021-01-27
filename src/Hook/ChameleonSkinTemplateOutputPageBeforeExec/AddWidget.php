@@ -3,6 +3,7 @@
 namespace BlueSpice\UEModuleHTML\Hook\ChameleonSkinTemplateOutputPageBeforeExec;
 
 use BlueSpice\Hook\ChameleonSkinTemplateOutputPageBeforeExec;
+use BlueSpice\UniversalExport\ModuleFactory;
 
 class AddWidget extends ChameleonSkinTemplateOutputPageBeforeExec {
 	/**
@@ -17,19 +18,15 @@ class AddWidget extends ChameleonSkinTemplateOutputPageBeforeExec {
 	}
 
 	protected function doProcess() {
-		$currentQueryParams = $this->getContext()->getRequest()->getValues();
-		$currentQueryParams['ue[module]'] = 'html';
-		$title = '';
-		if ( isset( $currentQueryParams['title'] ) ) {
-			$title = $currentQueryParams['title'];
-			unset( $currentQueryParams['title'] );
-		}
-		$specialPage = $this->getServices()->getSpecialPageFactory()->getPage(
-			'UniversalExport'
+		/** @var ModuleFactory $moduleFactory */
+		$moduleFactory = $this->getServices()->getService(
+			'BSUniversalExportModuleFactory'
 		);
+		$module = $moduleFactory->newFromName( 'html' );
+
 		$contentActions = [
 			'id' => 'bs-ta-uemodulehtml',
-			'href' => $specialPage->getPageTitle( $title )->getLinkUrl( $currentQueryParams ),
+			'href' => $module->getExportLink( $this->getContext()->getRequest() ),
 			'title' => $this->msg( 'bs-uemodulehtml-widgetlink-single-title' )->plain(),
 			'text' => $this->msg( 'bs-uemodulehtml-widgetlink-single-text' )->plain(),
 			'class' => 'bs-ue-export-link',
