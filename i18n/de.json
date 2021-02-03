@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Robert Vogel <vogel@hallowelt.biz>",
 			"Mcandri13",
-			"Mglaser"
+			"Mglaser",
+			"Robert Vogel <vogel@hallowelt.biz>"
 		]
 	},
 	"bs-uemodulehtml-extension-description": "Ermöglicht das Exportieren nach HTML",
