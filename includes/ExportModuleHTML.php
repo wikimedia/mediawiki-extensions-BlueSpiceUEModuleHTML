@@ -221,4 +221,30 @@ class ExportModuleHTML extends ExportModule {
 			$RElem->parentNode->removeChild( $RElem );
 		}
 	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getExportPermission() {
+		return null;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getSubactionHandlers() {
+		return [];
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getActionButtonDetails() {
+		return [
+			'title' => Message::newFromKey( 'bs-uemodulehtml-widgetlink-single-title' ),
+			'text' => Message::newFromKey( 'bs-uemodulehtml-widgetlink-single-text' ),
+			'class' => 'bs-ue-export-link',
+			'iconClass' => 'icon-file-zip bs-ue-export-link'
+		];
+	}
 }
