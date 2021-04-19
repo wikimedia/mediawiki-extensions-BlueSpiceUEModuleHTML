@@ -22,11 +22,11 @@
 					"className": "\\BlueSpice\\UEModuleHTML\\Extension",
 					"extPath": "/BlueSpiceUEModuleHTML",
 					"package": "BlueSpice Pro",
-					"status": "stable",
-					"configDefinitions": {
-						"UEModuleHTMLSuppressNS": "\\BlueSpice\\UEModuleHTML\\ConfigDefinition\\SuppressNS::getInstance"
-					}
+					"status": "stable"
 				}
+			},
+			"ConfigDefinitionRegistry": {
+				"UEModuleHTMLSuppressNS": "\\BlueSpice\\UEModuleHTML\\ConfigDefinition\\SuppressNS::getInstance"
 			}
 		},
 		"BlueSpiceUniversalExport": {
