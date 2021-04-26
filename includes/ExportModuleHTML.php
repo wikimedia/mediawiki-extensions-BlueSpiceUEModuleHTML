@@ -12,6 +12,7 @@
  * @filesource
  */
 use BlueSpice\UniversalExport\ExportModule;
+use BlueSpice\UniversalExport\ExportSpecification;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -24,25 +25,29 @@ class ExportModuleHTML extends ExportModule {
 	/**
 	 * Implementation of BsUniversalExportModule interface. Uses the
 	 * Java library xhtmlrenderer to create a HTML file.
-	 * @param SpecialUniversalExport &$caller
+	 * @param ExportSpecification &$specification
 	 * @return array array(
 	 * 'mime-type' => 'application/zip',
 	 * 'filename' => 'Filename.zip',
 	 * 'content' => '8F3BC3025A7...'
 	 * );
+	 * @throws BsException
+	 * @throws ConfigException
+	 * @throws FatalError
+	 * @throws MWException
 	 */
-	public function createExportFile( &$caller ) {
+	public function createExportFile( ExportSpecification &$specification ) {
 		global $wgRequest;
-		$pageParams = $caller->aParams;
+		$pageParams = $specification->getParams();
 
 		$config = MediaWikiServices::getInstance()->getConfigFactory()
 			->makeConfig( 'bsg' );
 
-		$pageParams['title']      = $caller->oRequestedTitle->getPrefixedText();
-		$pageParams['article-id'] = $caller->oRequestedTitle->getArticleID();
+		$pageParams['title']      = $specification->getTitle()->getPrefixedText();
+		$pageParams['article-id'] = $specification->getTitle()->getArticleID();
 		$pageParams['oldid']      = $wgRequest->getInt( 'oldid', 0 );
 		if ( $config->get( 'UEModuleHTMLSuppressNS' ) ) {
-			$pageParams['display-title'] = $caller->oRequestedTitle->getText();
+			$pageParams['display-title'] = $specification->getTitle()->getText();
 		}
 		// If we are in history mode and we are relative to an oldid
 		$pageParams['direction'] = $wgRequest->getVal( 'direction', '' );
@@ -83,8 +88,8 @@ class ExportModuleHTML extends ExportModule {
 		// The override may come from GET (&ue[template]=...)
 		// or from a tag (<bs:ueparams template="..." />)
 		// TODO: Make more generic
-		if ( !empty( $caller->aParams['template'] ) ) {
-			$templateParams['template'] = $caller->aParams['template'];
+		if ( !empty( $specification->getParam( 'template' ) ) ) {
+			$templateParams['template'] = $specification->getParam( 'template' );
 		}
 
 		// TODO: decouple from UEModulePDF
@@ -97,7 +102,7 @@ class ExportModuleHTML extends ExportModule {
 		$template['bookmarks-element']->appendChild(
 			$template['dom']->importNode( $pageDOM['bookmark-element'], true )
 		);
-		$template['title-element']->nodeValue = $caller->oRequestedTitle->getPrefixedText();
+		$template['title-element']->nodeValue = $specification->getTitle()->getPrefixedText();
 
 		$contents = [
 			'content' => [ $pageDOM['dom']->documentElement ]
@@ -125,17 +130,18 @@ class ExportModuleHTML extends ExportModule {
 			$i--;
 		}
 
-		$caller->aParams['document-token'] = md5( $caller->oRequestedTitle->getPrefixedText() )
-			. '-' . $caller->aParams['oldid'];
-		$caller->aParams['title'] = $caller->oRequestedTitle->getText();
-		$caller->aParams['resources']      = $template['resources'];
+		$token = md5( $specification->getTitle()->getPrefixedText() )
+			. '-' . $specification->getParam( 'oldid' );
+		$specification->setParam( 'document-token', $token );
+		$specification->setParam( 'title', $specification->getTitle()->getText() );
+		$specification->setParam( 'resources', $template['resources'] );
 
 		MediaWikiServices::getInstance()->getHookContainer()->run(
 			'BSUEModuleHTMLBeforeCreateHTML',
 			[
 				$this,
 				$DOM,
-				$caller
+				$specification
 			]
 		);
 
@@ -146,25 +152,26 @@ class ExportModuleHTML extends ExportModule {
 			'content'   => ''
 		];
 
-		if ( RequestContext::getMain()->getRequest()->getVal( 'debugformat', '' ) == 'html' ) {
+		if ( $specification->getParam( 'debugformat', '' ) === 'html' ) {
 			$response['content'] = $DOM->saveXML( $DOM->documentElement );
 			$response['mime-type'] = 'text/html';
 			$response['filename'] = sprintf(
 				'%s.html',
-				$caller->oRequestedTitle->getPrefixedText()
+				$specification->getTitle()->getPrefixedText()
 			);
 			$response['disposition'] = 'inline';
 			return $response;
 		}
 
-		$this->modifyPDFSpecificStuff( $caller->aParams, $DOM );
+		$params = $specification->getParams();
+		$this->modifyPDFSpecificStuff( $params, $DOM );
 
-		$HTMLArchiver = new HTMLArchiver( $caller->aParams );
+		$HTMLArchiver = new HTMLArchiver( $params );
 		$response['content'] = $HTMLArchiver->createHTML( $DOM );
 
 		$response['filename'] = sprintf(
 			$response['filename'],
-			$caller->oRequestedTitle->getPrefixedText()
+			$specification->getTitle()->getPrefixedText()
 		);
 
 		return $response;
