@@ -23,4 +23,11 @@ class SuppressNS extends BooleanSetting {
 	public function getLabelMessageKey() {
 		return 'bs-uemodulehtml-pref-SuppressNS';
 	}
+
+	/**
+	 * @return string
+	 */
+	public function getHelpMessageKey() {
+		return 'bs-uemodulehtml-pref-suppressns-help';
+	}
 }
