@@ -11,5 +11,6 @@
 	"bs-uemodulehtml-widgetlink-single-text": "Text for widget link HTML single page (archived)",
 	"bs-uemodulehtml-widgetlink-single-title": "Title for widget link",
 	"bs-uemodulehtml-overview-title": "Title for overview HTML document (archived)",
-	"bs-uemodulehtml-overview-description": "Description for overview"
+	"bs-uemodulehtml-overview-description": "Description for overview",
+	"bs-uemodulehtml-pref-suppressns-help": "Description for config variable \"UEModuleHTMLSuppressNS\""
 }
