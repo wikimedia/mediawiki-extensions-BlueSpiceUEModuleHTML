@@ -131,7 +131,7 @@ class ExportModuleHTML extends ExportModule {
 		}
 
 		$token = md5( $specification->getTitle()->getPrefixedText() )
-			. '-' . $specification->getParam( 'oldid' );
+			. '-' . intval( $specification->getParam( 'oldid' ) );
 		$specification->setParam( 'document-token', $token );
 		$specification->setParam( 'title', $specification->getTitle()->getText() );
 		$specification->setParam( 'resources', $template['resources'] );
