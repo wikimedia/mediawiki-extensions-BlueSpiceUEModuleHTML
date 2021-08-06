@@ -111,7 +111,7 @@ break;
 		}
 
 		$caller->aParams['document-token'] = md5( $caller->oRequestedTitle->getPrefixedText() )
-			. '-' . $caller->aParams['oldid'];
+			. '-' . intval( $caller->aParams['oldid'] );
 		$caller->aParams['title'] = $caller->oRequestedTitle->getText();
 		$caller->aParams['resources']      = $template['resources'];
 
