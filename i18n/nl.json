@@ -1,11 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mainframe98"
+			"Mainframe98",
+			"Romaine"
 		]
 	},
 	"bs-uemodulehtml-extension-description": "Voegt de mogelijkheid toe om te exporteren naar HTML",
 	"bs-uemodulehtml-pref-SuppressNS": "Naamruimtevoorvoegsel in de HTML verbergen",
 	"bs-uemodulehtml-widgetlink-single-text": "HTML, enkele pagina (gearchiveerd)",
-	"bs-uemodulehtml-overview-title": "HTML document (gearchiveerd)"
+	"bs-uemodulehtml-overview-title": "HTML document (gearchiveerd)",
+	"bs-uemodulehtml-pref-DefaultTemplate": "Standaardsjabloon",
+	"bs-uemodulehtml-pref-Backend": "Backend"
 }
