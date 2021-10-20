@@ -12,5 +12,6 @@
 	"bs-uemodulehtml-widgetlink-single-text": "HTML 單一頁面（已存檔）",
 	"bs-uemodulehtml-widgetlink-single-title": "匯出此頁面為 HTML，並將其資源匯成存檔",
 	"bs-uemodulehtml-overview-title": "HTML 文件（已存檔）",
-	"bs-uemodulehtml-overview-description": "匯出頁面（特殊頁面與內容頁面）至 HTML。"
+	"bs-uemodulehtml-overview-description": "匯出頁面（特殊頁面與內容頁面）至 HTML。",
+	"bs-uemodulehtml-pref-suppressns-help": "HTML 標題省略頁面的命名空間。"
 }
