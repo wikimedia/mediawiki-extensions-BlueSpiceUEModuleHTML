@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Eduardo Addad de Oliveira",
-			"Eduardoaddad"
+			"Eduardoaddad",
+			"Juan90264"
 		]
 	},
 	"bs-uemodulehtml-extension-description": "Permite a exportação para HTML",
@@ -12,5 +13,6 @@
 	"bs-uemodulehtml-widgetlink-single-text": "Página única em HTML (arquivada)",
 	"bs-uemodulehtml-widgetlink-single-title": "Exportar esta página como HTML, em conjunto com os correspondentes recursos, como um arquivo",
 	"bs-uemodulehtml-overview-title": "Documento HTML (arquivado)",
-	"bs-uemodulehtml-overview-description": "Exporta páginas (páginas especiais e de conteúdo) para HTML."
+	"bs-uemodulehtml-overview-description": "Exporta páginas (páginas especiais e de conteúdo) para HTML.",
+	"bs-uemodulehtml-pref-suppressns-help": "O namespace da página é omitido do título HTML."
 }
