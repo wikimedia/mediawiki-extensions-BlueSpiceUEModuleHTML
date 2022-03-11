@@ -15,5 +15,5 @@
 	"bs-uemodulehtml-widgetlink-single-title": "Exporter cette page en HTML avec ses ressources en archive",
 	"bs-uemodulehtml-overview-title": "Document HTML (archivé)",
 	"bs-uemodulehtml-overview-description": "Exporter des pages (pages de contenus ou spéciales) en HTML.",
-	"bs-uemodulehtml-pref-suppressns-help": "L’espace de nom de la page est omis du titre HTML."
+	"bs-uemodulehtml-pref-suppressns-help": "L’espace de noms de la page est omis du titre HTML."
 }
