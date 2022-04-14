@@ -1,4 +1,5 @@
 {
+	"name": "BlueSpiceUEModuleHTML",
 	"private": true,
 	"scripts": {
 		"test": "grunt test"
