@@ -1,10 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Fitoschido"
+			"Fitoschido",
+			"DiegoAmbrocio"
 		]
 	},
+	"bs-uemodulehtml-extension-description": "Permite exportar a HTML",
 	"bs-uemodulehtml-pref-DefaultTemplate": "Plantilla estándar",
+	"bs-uemodulehtml-pref-SuppressNS": "Ocultar el prefijo del espacio de nombres en HTML",
 	"bs-uemodulehtml-pref-Backend": "Motor",
 	"bs-uemodulehtml-widgetlink-single-text": "Página única HTML (archivador)",
 	"bs-uemodulehtml-overview-title": "Documento HTML (archivador)",
