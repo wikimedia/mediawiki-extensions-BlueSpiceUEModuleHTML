@@ -80,7 +80,8 @@ class ExportModuleHTML extends ExportModule {
 		$templateParams = [
 			'path'     => $config->get( 'UEModulePDFTemplatePath' ),
 			'template' => $config->get( 'UEModulePDFDefaultTemplate' ),
-			'language' => $caller->getUser()->getOption( 'language', 'en' ),
+			'language' => MediaWikiServices::getInstance()->getUserOptionsLookup()
+				->getOption( $caller->getUser(), 'language', 'en' ),
 			'meta'     => $pageDOM['meta']
 		];
 
