@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Mainframe98",
-			"Romaine"
+			"Romaine",
+			"McDutchie"
 		]
 	},
 	"bs-uemodulehtml-extension-description": "Voegt de mogelijkheid toe om te exporteren naar HTML",
@@ -10,5 +11,8 @@
 	"bs-uemodulehtml-pref-SuppressNS": "Naamruimtevoorvoegsel in de HTML verbergen",
 	"bs-uemodulehtml-pref-Backend": "Backend",
 	"bs-uemodulehtml-widgetlink-single-text": "HTML, enkele pagina (gearchiveerd)",
-	"bs-uemodulehtml-overview-title": "HTML document (gearchiveerd)"
+	"bs-uemodulehtml-widgetlink-single-title": "Deze pagina en de bijbehorende hulpbronnen als archief exporteren in HTML-formaat",
+	"bs-uemodulehtml-overview-title": "HTML document (gearchiveerd)",
+	"bs-uemodulehtml-overview-description": "Exporteert pagina's (speciale pagina's en inhoudspagina's) in HTML-formaat.",
+	"bs-uemodulehtml-pref-suppressns-help": "De naamruimte van de pagina wordt weggelaten uit de HTML-titel."
 }
