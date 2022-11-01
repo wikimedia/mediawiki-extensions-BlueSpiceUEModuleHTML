@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Meno25",
 			"ديفيد"
 		]
 	},
@@ -11,5 +12,6 @@
 	"bs-uemodulehtml-widgetlink-single-text": "صفحة HTML واحدة (مؤرشفة)",
 	"bs-uemodulehtml-widgetlink-single-title": "تصدير هذه الصفحة بتنسيق HTML مع مواردها كأرشيف",
 	"bs-uemodulehtml-overview-title": "مستند HTML (مؤرشف)",
-	"bs-uemodulehtml-overview-description": "يصدر الصفحات (الصفحات الخاصة وصفحات المحتوى)  إلى HTML."
+	"bs-uemodulehtml-overview-description": "يصدر الصفحات (الصفحات الخاصة وصفحات المحتوى)  إلى HTML.",
+	"bs-uemodulehtml-pref-suppressns-help": "تم حذف مساحة اسم الصفحة من عنوان HTML."
 }
