@@ -4,5 +4,6 @@
 			"Eleassar"
 		]
 	},
-	"bs-uemodulehtml-overview-description": "Izvozi strani (posebne strani in strani z vsebino) v HTML."
+	"bs-uemodulehtml-overview-description": "Izvozi strani (posebne strani in strani z vsebino) v HTML.",
+	"bs-uemodulehtml-pref-suppressns-help": "Imenski prostor strani je izpuščen iz naslova HTML-ja."
 }
