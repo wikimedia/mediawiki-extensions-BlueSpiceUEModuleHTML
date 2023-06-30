@@ -4,6 +4,9 @@
 		"wikimedia/client-es5",
 		"wikimedia/mediawiki"
 	],
+	"globals": {
+		"bs": "readonly"
+	},
 	"rules": {
 		"compat/compat": "warn"
 	}
