@@ -32,6 +32,11 @@
 		"BlueSpiceUniversalExport": {
 			"ModuleRegistry": {
 				"html": "\\ExportModuleHTML::factory"
+			},
+			"ExportDialogPluginRegistry": {
+				"html": {
+					"factory": "\\BlueSpice\\UEModuleHTML\\ExportDialogPluginHTML::factory"
+				}
 			}
 		}
 	},
@@ -46,6 +51,23 @@
 	},
 	"AutoloadNamespaces": {
 		"BlueSpice\\UEModuleHTML\\": "src/"
+	},
+	"ResourceModules": {
+		"ext.bluespice.ueModuleHtml.ue-export-dialog-plugin.html": {
+			"scripts": [
+				"ui/plugin/ExportDialogPlugin.Html.js"
+			],
+			"dependencies": [
+				"ext.bluespice.universalExport.exportDialog"
+			],
+			"messages": [
+				"bs-uemodulehtml-export-dialog-label-module-name"
+			]
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "resources",
+		"remoteExtPath": "BlueSpiceUEModuleHTML/resources"
 	},
 	"config_prefix": "bsg",
 	"config": {

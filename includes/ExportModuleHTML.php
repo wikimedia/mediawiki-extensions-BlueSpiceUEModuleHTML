@@ -11,6 +11,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GPL-3.0-only
  * @filesource
  */
+
+use BlueSpice\UEModulePDF\PDFServletHookRunner;
 use BlueSpice\UniversalExport\ExportModule;
 use BlueSpice\UniversalExport\ExportSpecification;
 use MediaWiki\MediaWikiServices;
@@ -80,7 +82,7 @@ class ExportModuleHTML extends ExportModule {
 		$templateParams = [
 			'path'     => $config->get( 'UEModulePDFTemplatePath' ),
 			'template' => $config->get( 'UEModulePDFDefaultTemplate' ),
-			'language' => $caller->getUser()->getOption( 'language', 'en' ),
+			'language' => $specification->getUser()->getOption( 'language', 'en' ),
 			'meta'     => $pageDOM['meta']
 		];
 
@@ -166,7 +168,9 @@ class ExportModuleHTML extends ExportModule {
 		$params = $specification->getParams();
 		$this->modifyPDFSpecificStuff( $params, $DOM );
 
-		$HTMLArchiver = new HTMLArchiver( $params );
+		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		$hookRunner = new PDFServletHookRunner( $hookContainer );
+		$HTMLArchiver = new HTMLArchiver( $params, $hookRunner );
 		$response['content'] = $HTMLArchiver->createHTML( $DOM );
 
 		$response['filename'] = sprintf(
