@@ -1,4 +1,6 @@
 <?php
+
+use BlueSpice\UEModulePDF\PDFServletHookRunner;
 use MediaWiki\MediaWikiServices;
 
 // TODO: decouple from UEModulePDF
@@ -7,10 +9,12 @@ class HTMLArchiver extends BsPDFServlet {
 	/**
 	 * HTMLArchiver constructor.
 	 * @param array $params
+	 * @param PDFServletHookRunner $hookRunner
 	 */
-	public function __construct( $params ) {
+	public function __construct( $params, PDFServletHookRunner $hookRunner ) {
 		$this->aParams = $params;
 		$this->aFiles = isset( $params['resources'] ) ? $params['resources'] : [];
+		$this->hookRunner = $hookRunner;
 	}
 
 	/**
