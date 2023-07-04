@@ -12,5 +12,6 @@
 	"bs-uemodulehtml-widgetlink-single-title": "Export this page as HTML together with its resources as an archive",
 	"bs-uemodulehtml-overview-title": "HTML document (archived)",
 	"bs-uemodulehtml-overview-description": "Exports pages (special pages and content pages) to HTML.",
-	"bs-uemodulehtml-pref-suppressns-help": "The namespace of the page is omitted from the HTML title."
+	"bs-uemodulehtml-pref-suppressns-help": "The namespace of the page is omitted from the HTML title.",
+	"bs-uemodulehtml-export-dialog-label-module-name": "HTML single page (archived)"
 }
