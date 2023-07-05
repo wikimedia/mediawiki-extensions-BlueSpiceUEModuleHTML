@@ -12,5 +12,6 @@
 	"bs-uemodulehtml-pref-Backend": "Zaledje",
 	"bs-uemodulehtml-widgetlink-single-text": "Ena stran HTML (arhivirana)",
 	"bs-uemodulehtml-widgetlink-single-title": "Izvozite to stran kot HTML skupaj z njenimi viri kot arhiv",
-	"bs-uemodulehtml-overview-title": "HTML-dokument (arhiviran)"
+	"bs-uemodulehtml-overview-title": "HTML-dokument (arhiviran)",
+	"bs-uemodulehtml-export-dialog-label-module-name": "Ena HTML-stran (arhivirana)"
 }
