@@ -12,5 +12,6 @@
 	"bs-uemodulehtml-widgetlink-single-title": "יצא הדף הזה כ־HTML יחד עם המשאבים שלו כארכיון",
 	"bs-uemodulehtml-overview-title": "מסמך HTML (מאורכב)",
 	"bs-uemodulehtml-overview-description": "יצוא דפים (דפים מיוחדים ודפי תוכן) ל־HTML.",
-	"bs-uemodulehtml-pref-suppressns-help": "מרחב השם של הדף מושמט מכותרת ה־HTML."
+	"bs-uemodulehtml-pref-suppressns-help": "מרחב השם של הדף מושמט מכותרת ה־HTML.",
+	"bs-uemodulehtml-export-dialog-label-module-name": "דף HTML בודד (מאורכב)"
 }

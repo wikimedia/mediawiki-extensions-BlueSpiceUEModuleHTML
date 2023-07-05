@@ -12,5 +12,6 @@
 	"bs-uemodulehtml-widgetlink-single-title": "Exportar iste pagina in HTML con su ressources como un archivo",
 	"bs-uemodulehtml-overview-title": "Documento HTML (archivate)",
 	"bs-uemodulehtml-overview-description": "Exporta paginas (special e de contento) in HTML.",
-	"bs-uemodulehtml-pref-suppressns-help": "Le spatio de nomines del pagina se omitte del titulo HTML."
+	"bs-uemodulehtml-pref-suppressns-help": "Le spatio de nomines del pagina se omitte del titulo HTML.",
+	"bs-uemodulehtml-export-dialog-label-module-name": "Pagina HTML individual (archivate)"
 }
