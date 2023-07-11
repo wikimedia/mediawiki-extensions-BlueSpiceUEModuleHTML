@@ -3,7 +3,8 @@
 		"authors": [
 			"Mcandri13",
 			"Mglaser",
-			"Robert Vogel <vogel@hallowelt.biz>"
+			"Robert Vogel <vogel@hallowelt.biz>",
+			"Brettchenweber"
 		]
 	},
 	"bs-uemodulehtml-extension-description": "Ermöglicht das Exportieren nach HTML",
@@ -15,5 +16,5 @@
 	"bs-uemodulehtml-overview-title": "HTML Dokument (archiviert)",
 	"bs-uemodulehtml-overview-description": "Exportiert Wikiseiten (Spezialseiten und Inhaltsseiten) nach HTML.",
 	"bs-uemodulehtml-pref-suppressns-help": "Der Namensraum der Seite wird im HTML-Titel unterdrückt.",
-	"bs-uemodulehtml-export-dialog-label-module-name": "HTML Einzelseite (archiviert)"
+	"bs-uemodulehtml-export-dialog-label-module-name": "HTML-Einzelseite (archiviert)"
 }
