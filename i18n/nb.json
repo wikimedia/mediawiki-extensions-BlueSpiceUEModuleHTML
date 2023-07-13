@@ -12,5 +12,6 @@
 	"bs-uemodulehtml-widgetlink-single-title": "Eksporter denne siden som HTML sammen med ressursene dens som et arkiv",
 	"bs-uemodulehtml-overview-title": "HTML-dokument (arkivert)",
 	"bs-uemodulehtml-overview-description": "Eksporterer sider (spesialsider og innholdssider) til HTML.",
-	"bs-uemodulehtml-pref-suppressns-help": "Navnerommet til siden utelates fra HTML-tittelen."
+	"bs-uemodulehtml-pref-suppressns-help": "Navnerommet til siden utelates fra HTML-tittelen.",
+	"bs-uemodulehtml-export-dialog-label-module-name": "HTML-enkeltside (arkivert)"
 }
