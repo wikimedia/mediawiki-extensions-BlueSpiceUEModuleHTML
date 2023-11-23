@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Brettchenweber",
 			"Mcandri13",
 			"Mglaser",
 			"Robert Vogel <vogel@hallowelt.biz>"
@@ -15,5 +16,5 @@
 	"bs-uemodulehtml-overview-title": "HTML Dokument (archiviert)",
 	"bs-uemodulehtml-overview-description": "Exportiert Wikiseiten (Spezialseiten und Inhaltsseiten) nach HTML.",
 	"bs-uemodulehtml-pref-suppressns-help": "Der Namensraum der Seite wird im HTML-Titel unterdrückt.",
-	"bs-uemodulehtml-export-dialog-label-module-name": "HTML Einzelseite (archiviert)"
+	"bs-uemodulehtml-export-dialog-label-module-name": "HTML-Einzelseite (archiviert)"
 }
