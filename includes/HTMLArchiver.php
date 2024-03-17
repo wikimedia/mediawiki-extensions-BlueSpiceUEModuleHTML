@@ -48,9 +48,11 @@ class HTMLArchiver extends BsPDFServlet {
 			// Backwards compatibility to old inconsitent PDFTemplates
 			// (having "STYLESHEET" as type but linnking to "stylesheets")
 			// TODO: Make conditional?
-			if ( $type == 'IMAGE' ) {      $type = 'images';
+			if ( $type == 'IMAGE' ) {
+				$type = 'images';
 			}
-			if ( $type == 'STYLESHEET' ) { $type = 'stylesheets';
+			if ( $type == 'STYLESHEET' ) {
+				$type = 'stylesheets';
 			}
 			$assetDir = $this->aParams['title'] . '/' . $type;
 
