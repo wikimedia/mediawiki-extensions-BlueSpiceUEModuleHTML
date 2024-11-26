@@ -13,5 +13,6 @@
 	"bs-uemodulehtml-widgetlink-single-title": "تصدير هذه الصفحة بتنسيق HTML مع مواردها كأرشيف",
 	"bs-uemodulehtml-overview-title": "مستند HTML (مؤرشف)",
 	"bs-uemodulehtml-overview-description": "يصدر الصفحات (الصفحات الخاصة وصفحات المحتوى)  إلى HTML.",
-	"bs-uemodulehtml-pref-suppressns-help": "تم حذف مساحة اسم الصفحة من عنوان HTML."
+	"bs-uemodulehtml-pref-suppressns-help": "تم حذف مساحة اسم الصفحة من عنوان HTML.",
+	"bs-uemodulehtml-export-dialog-label-module-name": "صفحة HTML واحدة (مؤرشفة)"
 }
