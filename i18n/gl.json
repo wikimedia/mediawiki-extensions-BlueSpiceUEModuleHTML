@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Toliño"
+		]
+	},
+	"bs-uemodulehtml-extension-description": "Activa a exportación a HTML",
+	"bs-uemodulehtml-pref-DefaultTemplate": "Modelo estándar",
+	"bs-uemodulehtml-pref-SuppressNS": "Ocultar o prefixo do espazo de nomes no HTML",
+	"bs-uemodulehtml-pref-Backend": "Servidor",
+	"bs-uemodulehtml-widgetlink-single-text": "Páxina HTML única (arquivada)",
+	"bs-uemodulehtml-widgetlink-single-title": "Exportar esta páxina como HTML xunto cos seus recursos como un arquivo",
+	"bs-uemodulehtml-overview-title": "Documento HTML (arquivado)",
+	"bs-uemodulehtml-overview-description": "Exporta páxinas (páxinas especiais e páxinas de contido) a HTML.",
+	"bs-uemodulehtml-pref-suppressns-help": "O espazo de nomes da páxina omítese no título en HTML.",
+	"bs-uemodulehtml-export-dialog-label-module-name": "Páxina HTML única (arquivada)"
+}
