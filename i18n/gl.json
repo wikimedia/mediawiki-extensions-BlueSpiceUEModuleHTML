@@ -12,6 +12,6 @@
 	"bs-uemodulehtml-widgetlink-single-title": "Exportar esta páxina como HTML xunto cos seus recursos como un arquivo",
 	"bs-uemodulehtml-overview-title": "Documento HTML (arquivado)",
 	"bs-uemodulehtml-overview-description": "Exporta páxinas (páxinas especiais e páxinas de contido) a HTML.",
-	"bs-uemodulehtml-pref-suppressns-help": "O espazo de nomes da páxina omítese no título en HTML.",
+	"bs-uemodulehtml-pref-suppressns-help": "O espazo de nomes da páxina omítese no título do HTML.",
 	"bs-uemodulehtml-export-dialog-label-module-name": "Páxina HTML única (arquivada)"
 }
