@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wizzard"
+		]
+	},
+	"bs-uemodulehtml-extension-description": "Umožňuje export do HTML",
+	"bs-uemodulehtml-pref-DefaultTemplate": "Štandardná šablóna",
+	"bs-uemodulehtml-pref-SuppressNS": "Skryť predponu menného priestoru v HTML",
+	"bs-uemodulehtml-pref-Backend": "Backend",
+	"bs-uemodulehtml-widgetlink-single-text": "Jedna stránka HTML (archív)",
+	"bs-uemodulehtml-widgetlink-single-title": "Exportovať túto stránku ako HTML spolu s jej zdrojmi vo forme archívu",
+	"bs-uemodulehtml-overview-title": "Dokument HTML (archív)",
+	"bs-uemodulehtml-overview-description": "Exportuje stránky (špeciálne aj obsahové) do HTML.",
+	"bs-uemodulehtml-pref-suppressns-help": "Menný priestor stránky sa v názve HTML vynechá.",
+	"bs-uemodulehtml-export-dialog-label-module-name": "Jedna stránka HTML (archív)"
+}
